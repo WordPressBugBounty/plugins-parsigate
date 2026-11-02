@@ -1,0 +1,220 @@
+<?php
+
+namespace ParsiGate;
+
+if (!defined('ABSPATH')) exit;
+
+class WooCommerce
+{
+
+    private ?array $block_gateways = null;
+
+    public function __construct()
+    {
+        // Define Classic Gateway
+        add_filter('woocommerce_payment_gateways', [$this, 'woocommerce_payment_gateways']);
+
+        // Define Block Gateway
+        add_action('woocommerce_blocks_loaded', array($this, 'woocommerce_blocks_loaded'));
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_block_scripts']);
+
+        // Ltr Input Class
+        add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts']);
+    }
+
+    public function woocommerce_payment_gateways($methods)
+    {
+        $gateways = Gateways::list();
+        foreach ($gateways as $gateway_id => $option) {
+            // Check enable
+            if (!Gateways::enable($gateway_id) || !in_array('woocommerce', $option['usage'])) {
+                continue;
+            }
+
+            // Do Action
+            do_action('parsigate_before_woocommerce_gateway_loaded', $gateway_id);
+
+            // Setup Gateway
+            $gateway_class = new \ParsiGate\WC_Gateway();
+            $gateway_class->setup_gateway($gateway_id);
+
+            // Append to list
+            $methods[] = $gateway_class;
+
+            // Do Action
+            do_action('parsigate_after_woocommerce_gateway_loaded', $gateway_id);
+        }
+
+        return $methods;
+    }
+
+    public function woocommerce_blocks_loaded()
+    {
+        if (!class_exists('\Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType')) {
+            return;
+        }
+
+        add_action('woocommerce_blocks_payment_method_type_registration', [$this, 'register_block_gateways']);
+    }
+
+    private function get_block_gateways(): array
+    {
+        if ($this->block_gateways !== null) {
+            return $this->block_gateways;
+        }
+
+        $this->block_gateways = [];
+
+        foreach (Gateways::list() as $gateway_id => $option) {
+            if (!Gateways::enable($gateway_id) || !in_array('woocommerce', $option['usage'], true)) {
+                continue;
+            }
+
+            $block_gateway = new WC_Gateway_Block($gateway_id);
+            $block_gateway->initialize();
+
+            $woocommerce_settings = get_option('woocommerce_' . $gateway_id . '_settings', []);
+            $is_enabled = isset($woocommerce_settings['enabled']) && $woocommerce_settings['enabled'] === 'yes';
+
+            if (!$block_gateway->is_active() || !$is_enabled) {
+                continue;
+            }
+
+            $this->block_gateways[] = $block_gateway;
+        }
+
+        return $this->block_gateways;
+    }
+
+    public function register_block_gateways($payment_method_registry)
+    {
+        foreach ($this->get_block_gateways() as $gateway) {
+            $payment_method_registry->register($gateway);
+        }
+    }
+
+    private function get_js_data(): array
+    {
+        $data = [];
+
+        foreach ($this->get_block_gateways() as $gateway) {
+            $method = $gateway->get_payment_method_data();
+
+            $data[] = [
+                'name' => $gateway->get_name(),
+                'title' => $method['title'],
+                'description' => $method['description'],
+                'icon' => $method['icon'],
+                'driver' => $gateway->get_name(),
+            ];
+        }
+
+        return $data;
+    }
+
+    public function enqueue_block_scripts()
+    {
+        if (has_block('woocommerce/checkout') || has_block('woocommerce/cart')) {
+            wp_enqueue_script(
+                'parsigate-blocks',
+                \ParsiGate::$plugin_url . '/assets/js/parsigate-blocks.min.js',
+                ['wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-html-entities', 'wp-i18n'],
+                \ParsiGate::$plugin_version,
+                true
+            );
+
+            wp_localize_script('parsigate-blocks', 'parsigate_gateways', $this->get_js_data());
+        }
+    }
+
+    public static function get_gateway_option($id)
+    {
+        return get_option('woocommerce_' . $id . '_settings', []);
+    }
+
+    public static function get_order_description($order, $gateway = null)
+    {
+        $name = $order->get_billing_company();
+        if (!empty($order->get_billing_first_name()) || !empty($order->get_billing_last_name())) {
+            $name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
+        }
+
+        $site_url = get_option('siteurl');
+        $domain = wp_parse_url($site_url, PHP_URL_HOST);
+
+        /* translators: 1: Order number, 2: Customer name, 3: Website domain */
+        $text = sprintf(__('Order ID: %1$d | By: %2$s | Site: %3$s', 'parsigate'), $order->get_order_number(), trim($name), ucfirst($domain));
+        return apply_filters('parsigate_order_description_api', $text, $order, $gateway);
+    }
+
+    public function admin_enqueue_scripts($hook)
+    {
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
+        if (isset($_GET['page']) and $_GET['page'] === 'wc-settings' and isset($_GET['tab']) and $_GET['tab'] === 'checkout') {
+            $inline_style = '
+                    .pg-ltr-input {
+                        direction: ltr !important;
+                        text-align: left !important;
+                    }
+                ';
+            wp_add_inline_style('wc-admin-app', $inline_style);
+        }
+    }
+
+    public static function price($amount, $order, $gateway = null)
+    {
+        $raw = $amount;
+        $currency = strtolower($order->get_currency());
+
+        $irt_currencies = [
+            'irt',
+            'toman',
+            'iran toman',
+            'iranian toman',
+            'iran-toman',
+            'iran_toman',
+            'تومان',
+            'تومان ایران'
+        ];
+
+        if (in_array($currency, $irt_currencies)) {
+            $amount = $amount * 10;
+        } else if ('irht' === $currency) {
+            $amount = $amount * 1000 * 10;
+        } else if ('irhr' === $currency) {
+            $amount = $amount * 1000;
+        }
+
+        return apply_filters('parsigate_get_order_price', $amount, $order, $raw, $gateway);
+    }
+
+    public static function is_gateway_option_page($gateway_id): bool
+    {
+        global $pagenow;
+
+        // phpcs:disable WordPress.Security.NonceVerification.Missing
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended
+
+        if (!is_admin()) {
+            return false;
+        }
+
+        $page = $tab = $section = '';
+        if (isset($_GET['page']) and isset($_GET['tab']) and isset($_GET['section'])) {
+
+            $page = sanitize_text_field(wp_unslash($_GET['page']) ?? '');
+            $tab = sanitize_text_field(wp_unslash($_GET['tab']) ?? '');
+            $section = sanitize_text_field(wp_unslash($_GET['section']) ?? '');
+        }
+
+        if ($pagenow != "admin.php" || $page != 'wc-settings' || $tab != 'checkout' || $section != $gateway_id) {
+            return false;
+        }
+
+        return true;
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+    }
+}
+
+new WooCommerce();

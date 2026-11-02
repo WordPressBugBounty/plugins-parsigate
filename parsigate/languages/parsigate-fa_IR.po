@@ -1,0 +1,877 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Parsi Gate\n"
+"POT-Creation-Date: 2026-09-29 11:04+0330\n"
+"PO-Revision-Date: 2026-10-31 02:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ParsiGate.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. translators: %1$s is the plugin name (Parsigate), %2$s is the required plugin name
+#: ParsiGate.php:148
+#, php-format
+msgid "%1$s plugin requires %2$s plugin to function properly."
+msgstr "افزونه %1$s نیازمند افزونه %2$s برای اجرا می باشد."
+
+#. Plugin Name of the plugin/theme
+#: ParsiGate.php:149
+msgid "Parsigate"
+msgstr "پارسی گیت"
+
+#. translators: %1$s is the required plugin name, %2$s is the minimum required version
+#: ParsiGate.php:162
+#, php-format
+msgid "Please update %1$s to version %2$s or later to access all features."
+msgstr ""
+"لطفا افزونه  %1$s به نسخه ی %2$s یا بالاتر جهت دسترسی به تمامی امکانات "
+"بروزرسانی نمایید.."
+
+#: ParsiGate.php:171 ParsiGate.php:216
+msgid "Download from WordPress"
+msgstr "دانلود از مخزن وردپرس"
+
+#: ParsiGate.php:178
+msgid "Update directly"
+msgstr "بروزرسانی  بطور مستقیم"
+
+#. translators: %s is the required plugin name
+#: ParsiGate.php:189
+#, php-format
+msgid "Please activate %s plugin to access all features."
+msgstr ""
+"لطفا افزونه %s  را نصب و فعال کنید تا به همه ی امکانات دسترسی داشته باشید."
+
+#: ParsiGate.php:197
+msgid "Activate"
+msgstr "فعال‌سازی"
+
+#. translators: %s is the required plugin name
+#: ParsiGate.php:208
+#, php-format
+msgid "Please install and activate %s plugin first to access all features."
+msgstr ""
+"لطفا افزونه %s  را نصب و فعال کنید تا به همه ی امکانات دسترسی داشته باشید."
+
+#: ParsiGate.php:223
+msgid "Install directly"
+msgstr "دانلود بطور مستقیم"
+
+#: inc/Gateway.php:86
+msgid "Gateway class not found"
+msgstr "کلاس درگاه یافت نشد"
+
+#: inc/Gateways.php:40
+msgid "Bank Gateway"
+msgstr "درگاه بانک"
+
+#: inc/Gateways.php:41
+msgid "Intermediary Gateway"
+msgstr "درگاه واسط"
+
+#: inc/Gateways.php:42
+msgid "Installment Gateway"
+msgstr "درگاه اعتباری"
+
+#: inc/Gateways.php:43
+msgid "Offline Gateway"
+msgstr "درگاه آفلاین"
+
+#: inc/Gateways.php:55
+msgid "Parsian"
+msgstr "پارسیان"
+
+#: inc/Gateways.php:60 inc/Gateways.php:246
+msgid ""
+"Note: To activate the Gateway, the SoapClient module must be enabled in your "
+"host's PHP settings."
+msgstr ""
+"توجه: جهت فعال سازی این درگاه نیاز به ماژول SoapClient در PHP هاست خود دارید."
+
+#: inc/Gateways.php:65 inc/Gateways.php:331 inc/Gateways.php:382
+#: inc/Gateways.php:571 inc/Gateways.php:620 inc/Gateways.php:1327
+msgid "Merchant ID"
+msgstr "کد درگاه"
+
+#: inc/Gateways.php:68 inc/Gateways.php:334 inc/Gateways.php:385
+#: inc/Gateways.php:574 inc/Gateways.php:623 inc/Gateways.php:1330
+msgid "Please enter the gateway merchant id."
+msgstr "لطفا کد مرچنت درگاه خود را وارد نمایید."
+
+#: inc/Gateways.php:95
+msgid "Pasargad"
+msgstr "پاسارگاد"
+
+#: inc/Gateways.php:125 inc/Gateways.php:197 inc/Gateways.php:251
+#: inc/Gateways.php:323 inc/Gateways.php:447 inc/Gateways.php:494
+#: inc/Gateways.php:1215
+msgid "Terminal No."
+msgstr "شماره ترمینال."
+
+#: inc/Gateways.php:128 inc/Gateways.php:200 inc/Gateways.php:254
+#: inc/Gateways.php:326 inc/Gateways.php:451 inc/Gateways.php:497
+#: inc/Gateways.php:1218
+msgid "Please enter the gateway terminal number."
+msgstr "لطفا شناسه ترمینال درگاه خود را وارد نمایید."
+
+#: inc/Gateways.php:133 inc/Gateways.php:259 inc/Gateways.php:390
+#: inc/Gateways.php:1014 inc/Gateways.php:1143 inc/Gateways.php:1335
+msgid "Username"
+msgstr "نام کاربری"
+
+#: inc/Gateways.php:140 inc/Gateways.php:266 inc/Gateways.php:398
+#: inc/Gateways.php:502 inc/Gateways.php:1022 inc/Gateways.php:1151
+#: inc/Gateways.php:1343
+msgid "Password"
+msgstr "رمز عبور"
+
+#: inc/Gateways.php:143 inc/Gateways.php:401 inc/Gateways.php:505
+#: inc/Gateways.php:1025 inc/Gateways.php:1154 inc/Gateways.php:1346
+msgid "Please enter the gateway password."
+msgstr "لطفا رمز عبور درگاه خود را وارد کنید."
+
+#: inc/Gateways.php:188
+msgid "Saman (Sep)"
+msgstr "سامان (سپ)"
+
+#: inc/Gateways.php:241
+msgid "Mellat (BehPardakht)"
+msgstr "ملت (به پرداخت)"
+
+#: inc/Gateways.php:313
+msgid "Melli (Sadad)"
+msgstr "ملی (سداد)"
+
+#: inc/Gateways.php:318 inc/Gateways.php:489 inc/Gateways.php:1210
+msgid ""
+"Note: To activate the Gateway, the OpenSSL module must be enabled in your "
+"host's PHP settings."
+msgstr ""
+"توجه: جهت فعال سازی این درگاه نیاز به ماژول OpenSSL در PHP هاست خود دارید."
+
+#: inc/Gateways.php:339
+msgid "Gateway Key"
+msgstr "کلید درگاه"
+
+#: inc/Gateways.php:373
+msgid "Asan Pardakht"
+msgstr "آسان پرداخت"
+
+#: inc/Gateways.php:393 inc/Gateways.php:1017 inc/Gateways.php:1146
+#: inc/Gateways.php:1338
+msgid "Please enter the gateway username."
+msgstr "لطفا نام کاربری درگاه خود را وارد کنید."
+
+#: inc/Gateways.php:438
+msgid "Saderat (Sepehr)"
+msgstr "صادرات (سپهر)"
+
+#: inc/Gateways.php:484
+msgid "Iran Kish"
+msgstr "ایران کیش"
+
+#: inc/Gateways.php:510
+msgid "Acceptor Id"
+msgstr "کلید پذیرنده"
+
+#: inc/Gateways.php:513
+msgid "Please enter the gateway acceptor Id."
+msgstr "لطفا کلید پذیرنده درگاه را وارد کنید."
+
+#: inc/Gateways.php:518
+msgid "Public Key"
+msgstr "کلید عمومی"
+
+#: inc/Gateways.php:521
+msgid "Please enter the gateway public key."
+msgstr "لطفا کلید عمومی درگاه خود را وارد کنید."
+
+#: inc/Gateways.php:562
+msgid "ZarinPal"
+msgstr "زرین پال"
+
+#: inc/Gateways.php:611
+msgid "Zibal"
+msgstr "زیبال"
+
+#: inc/Gateways.php:656
+msgid "PayPing"
+msgstr "پی پینگ"
+
+#: inc/Gateways.php:664
+msgid "Token"
+msgstr "توکن"
+
+#: inc/Gateways.php:726
+msgid "ParsPal"
+msgstr "پارس پال"
+
+#: inc/Gateways.php:735 inc/Gateways.php:1223
+msgid "API Key"
+msgstr "کلید وب سرویس"
+
+#: inc/Gateways.php:738
+msgid "Please enter the gateway API Key"
+msgstr "لطفا apiKey وب سرویس درگاه را وارد کنید."
+
+#: inc/Gateways.php:778
+msgid "AqayePardakht"
+msgstr "آقای پرداخت"
+
+#: inc/Gateways.php:787
+msgid "Pin"
+msgstr "پین"
+
+#: inc/Gateways.php:823
+msgid "Shepa"
+msgstr "شپا"
+
+#: inc/Gateways.php:832
+msgid "API Token"
+msgstr "توکن وب سرویس"
+
+#: inc/Gateways.php:867
+msgid "Jibit"
+msgstr "جیبیت"
+
+#: inc/Gateways.php:898
+msgid "apiKey"
+msgstr ""
+
+#: inc/Gateways.php:901
+msgid "Please enter the gateway apiKey."
+msgstr "لطفا apiKey وب سرویس درگاه را وارد کنید."
+
+#: inc/Gateways.php:906
+msgid "secretKey"
+msgstr ""
+
+#: inc/Gateways.php:909
+msgid "Please enter the gateway secretKey."
+msgstr "لطفا secretKey درگاه خود را وارد کنید."
+
+#: inc/Gateways.php:966
+msgid "SnappPay"
+msgstr "اسنپ پی"
+
+#: inc/Gateways.php:998 inc/Gateways.php:1127
+msgid "Client ID"
+msgstr "شناسه کلاینت"
+
+#: inc/Gateways.php:1001 inc/Gateways.php:1130
+msgid "Please enter the gateway client id."
+msgstr "لطفا شناسه کلایت درگاه خود را وارد کنید."
+
+#: inc/Gateways.php:1006 inc/Gateways.php:1135
+msgid "Client Secret"
+msgstr "کلید خصوصی کلاینت"
+
+#: inc/Gateways.php:1009 inc/Gateways.php:1138
+msgid "Please enter the gateway client secret."
+msgstr "لطفا کلید خصوصی کلاینت خود را وارد کنید."
+
+#: inc/Gateways.php:1035 inc/Gateways.php:1356
+msgid "mobile is required !"
+msgstr "موبایل الزامی هست !"
+
+#: inc/Gateways.php:1094
+msgid "DigiPay"
+msgstr "دیجی پی"
+
+#: inc/Gateways.php:1205
+msgid "Azkivam"
+msgstr "از کی وام"
+
+#: inc/Gateways.php:1226
+msgid "Please enter the gateway api key."
+msgstr "لطفا کلید وب سرویس درگاه را وارد کنید."
+
+#: inc/Gateways.php:1231
+msgid "API Url"
+msgstr "آدرس وب سرویس"
+
+#: inc/Gateways.php:1234
+msgid "Please enter the gateway api url."
+msgstr "لطفا آدرس وب سرویس درگاه را وارد کنید."
+
+#: inc/Gateways.php:1260 inc/Gateways.php:1395
+msgid "Shipping Cost"
+msgstr "هزینه حمل و نقل"
+
+#: inc/Gateways.php:1296
+msgid "Tara"
+msgstr "تارا"
+
+#: inc/Gateways.php:1379
+msgid "Buy online from: "
+msgstr "خرید آنلاین از: "
+
+#: inc/Gateways.php:1385
+msgid "Other"
+msgstr "دیگر"
+
+#: inc/Gateways.php:1401
+msgid "Shipping"
+msgstr "هزینه حمل و نقل"
+
+#: inc/Gateways.php:1446
+msgid "ZarinPlus"
+msgstr "زرین پلاس"
+
+#: inc/Gateways.php:1454 inc/compatibility/ZarinPlus.php:91
+msgid "Merchant token"
+msgstr "توکن فروشنده"
+
+#: inc/Gateways.php:1457 inc/compatibility/ZarinPlus.php:94
+msgid "Please enter the gateway merchant token."
+msgstr "لطفا توکن فروشنده را وارد نمایید."
+
+#: inc/Gateways.php:1489
+msgid "Card To Card"
+msgstr "کارت به کارت"
+
+#: inc/Gateways.php:1498 inc/templates/cardtocard-gateway.php:26
+msgid "Full Name / Company Name"
+msgstr "نام کامل / نام شرکت"
+
+#: inc/Gateways.php:1503 inc/templates/cardtocard-gateway.php:30
+msgid "Bank Name"
+msgstr "نام بانک"
+
+#: inc/Gateways.php:1508 inc/templates/cardtocard-gateway.php:27
+msgid "Bank Account Number"
+msgstr "شماره حساب بانکی"
+
+#: inc/Gateways.php:1514 inc/templates/cardtocard-gateway.php:28
+msgid "IBAN"
+msgstr "شماره شباء"
+
+#: inc/Gateways.php:1516
+msgid "Example: IR..."
+msgstr "مثلا: IR"
+
+#: inc/Gateways.php:1521 inc/templates/cardtocard-gateway.php:29
+msgid "Card Number"
+msgstr "شماره کارت"
+
+#: inc/Gateways.php:1527
+msgid "Max Image size (MB)"
+msgstr "حداکثر حجم عکس (مگابایت)"
+
+#: inc/Gateways.php:1533
+msgid "Instructions for the Information Form"
+msgstr "دستورالعمل‌های مربوط به فرم اطلاعات"
+
+#: inc/Gateways.php:1535
+msgid ""
+"Please transfer the desired amount using the bank information below, then "
+"attach the payment receipt."
+msgstr ""
+"لطفاً مبلغ مورد نظر را با استفاده از اطلاعات بانکی زیر انتقال دهید، سپس رسید "
+"پرداخت را پیوست کنید."
+
+#: inc/Gateways.php:1539
+msgid "Message After Receipt Submission"
+msgstr "پیام پس از ارسال رسید"
+
+#: inc/Gateways.php:1541
+msgid ""
+"Your payment information has been received and will be reviewed shortly."
+msgstr "اطلاعات پرداخت شما دریافت شد و به‌زودی بررسی خواهد شد."
+
+#: inc/Gateways.php:1561 inc/compatibility/Test.php:57
+#: inc/templates/test-gateway.php:8
+msgid "Test Gateway"
+msgstr "درگاه تست"
+
+#: inc/Option.php:73
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: inc/Option.php:128
+msgid "Gateways log"
+msgstr "لاگ درگاه"
+
+#: inc/Option.php:135 inc/custom-table/pg-log/Log.php:26
+msgid "ParsiGate Log"
+msgstr "لاگ پارسی گیت"
+
+#: inc/Option.php:138 inc/WC_Gateway.php:138
+msgid "Yes"
+msgstr "آری"
+
+#: inc/Option.php:139 inc/WC_Gateway.php:137
+msgid "No"
+msgstr "خیر"
+
+#: inc/Option.php:143
+msgid "Show logs list"
+msgstr "نمایش لیست لاگ"
+
+#: inc/Option.php:151 inc/Option.php:166 inc/Option.php:167
+msgid "Parsi Gate"
+msgstr "پارسی گیت"
+
+#: inc/Option.php:152
+msgid "Parsi Gate Tools"
+msgstr "تنظیمات پارسی گیت"
+
+#: inc/Option.php:171
+msgid "Payment gateways"
+msgstr "درگاه پرداخت"
+
+#: inc/Option.php:176
+msgid "Payment gateway"
+msgstr "درگاه پرداخت"
+
+#: inc/WC_Gateway.php:38
+msgid "payment gateway (By ParsiGate)"
+msgstr "درگاه پرداخت (بوسیله پارسی گیت)"
+
+#: inc/WC_Gateway.php:97
+msgid "Enabled/Disabled"
+msgstr "فعال / غیر فعال"
+
+#. translators: %s: Gateway method title
+#: inc/WC_Gateway.php:100
+#, php-format
+msgid "Activate or deactivate %s gateway"
+msgstr "فعال سازی یا غیر فعال سازی %s درگاه"
+
+#: inc/WC_Gateway.php:105
+msgid "Gateway title"
+msgstr "عنوان نمایشی درگاه"
+
+#: inc/WC_Gateway.php:107
+msgid "This name is displayed to the customer during the purchase process"
+msgstr "لطفا عنوان نمایشی برای این درگاه در صفحه پرداخت ووکامرس وارد نمایید"
+
+#: inc/WC_Gateway.php:111
+msgid "Gateway description"
+msgstr "توضیحات نمایشی درگاه"
+
+#: inc/WC_Gateway.php:113
+msgid ""
+"The description that will be displayed during the purchase process for the "
+"gateway"
+msgstr "لطفا توضیحات نمایشی برای این درگاه در صفحه پرداخت ووکامرس وارد نمایید"
+
+#. translators: %s: Gateway name for credit/installment payments
+#: inc/WC_Gateway.php:117
+#, php-format
+msgid "Credit and installment payments through %s"
+msgstr "پرداخت اقساط و اعتباری منطبق بر %s"
+
+#. translators: %s: Payment gateway name for Shetab card payments
+#: inc/WC_Gateway.php:119
+#, php-format
+msgid "Secure payment by all Shetab's cards through %s"
+msgstr "پرداخت توسط تمامی کارت های عضو شتاب بانکی بوسیله %s"
+
+#: inc/WC_Gateway.php:130
+msgid "Sandbox"
+msgstr "حالت تست"
+
+#: inc/WC_Gateway.php:133
+msgid "is Enable SandBox?"
+msgstr "آیا حالت تست فعال باشد؟"
+
+#: inc/WC_Gateway.php:145
+msgid "Payment failed message"
+msgstr "پیام در زمان پرداخت ناموفق"
+
+#: inc/WC_Gateway.php:147
+msgid ""
+"Enter the text of the message you want to display to the user after an "
+"unsuccessful payment."
+msgstr ""
+"لطفا متنی را که مشتریان بعد از پرداخت ناموفق در صفحه بازگشت از درگاه مشاهده "
+"می کنند را وارد نمایید."
+
+#: inc/WC_Gateway.php:148
+msgid ""
+"Your payment has failed. Please try again or contact us in case of problems."
+msgstr ""
+"پرداخت شما ناموفق بوده است ، لطفا مجدد تلاش کنید یا موضوع را به پشتیبان سایت "
+"در میان بگذارید."
+
+#: inc/WC_Gateway.php:151
+msgid "Display for User Roles"
+msgstr "نمایش برای نقش های کاربری"
+
+#: inc/WC_Gateway.php:154
+msgid "Gateway will only be displayed for selected user roles."
+msgstr "این درگاه تنها برای نقش هایی که انتخاب می کنید نمایش داده شود."
+
+#: inc/WC_Gateway.php:159
+msgid "Minimum Cart Amount"
+msgstr "حداقل مبلغ سبد خرید"
+
+#. translators: %s: Current currency symbol (e.g. $, €, ﷼)
+#: inc/WC_Gateway.php:162
+#, php-format
+msgid "Minimum cart amount to display the gateway. Current currency: %s"
+msgstr ""
+"این درگاه تنها برای سبد های خریدی با حداقل مبلغ خرید ذکر شده نمایش داده "
+"خواهد شد. واحد پولی شما: %s"
+
+#: inc/WC_Gateway.php:169
+msgid "Allowed Products Categories"
+msgstr "دسته بندی محصولات ووکامرس"
+
+#: inc/WC_Gateway.php:172
+msgid ""
+"Gateway will only be displayed if cart contains products from selected "
+"categories."
+msgstr ""
+"این درگاه پرداخت تنها برای سبد های خریدی که شامل محصولاتی در این دسته بندی "
+"ها باشد نمایش داده خواهد شد."
+
+#: inc/WC_Gateway.php:177
+msgid "Product IDs"
+msgstr "شناسه محصولات ووکامرس"
+
+#: inc/WC_Gateway.php:179
+msgid ""
+"Enter product IDs separated by commas. Gateway will be displayed only if ALL "
+"products in cart are from this list."
+msgstr ""
+"این درگاه پرداخت تنها برای سبد های خریدی که شامل این لیست از شناسه محصولات "
+"باشد نمایش داده خواهد شد."
+
+#: inc/WC_Gateway.php:181
+msgid "e.g., 123, 456, 789"
+msgstr "به عنوان مثال: 123,265,4595"
+
+#: inc/WC_Gateway.php:474 inc/WC_Gateway.php:480
+msgid "Invalid order id."
+msgstr "شناسه سفارش نامعتبر است."
+
+#. translators: %s: Transaction ID number
+#: inc/WC_Gateway.php:596
+#, php-format
+msgid "Payment Success, Transaction ID: %s"
+msgstr "پرداخت موفق, شناسه تراکنش: %s"
+
+#. translators: 1: Order number, 2: Customer name, 3: Website domain
+#: inc/WooCommerce.php:146
+#, php-format
+msgid "Order ID: %1$d | By: %2$s | Site: %3$s"
+msgstr "سفارش: %1$d | خریدار: %2$s | سایت: %3$s"
+
+#: inc/compatibility/CardToCard.php:81
+msgid "Deposit Image"
+msgstr "تصویر واریز"
+
+#: inc/compatibility/CardToCard.php:84
+msgid "No receipt has been submitted for this order."
+msgstr "برای این سفارش هیچ رسیدی ارسال نشده است."
+
+#: inc/compatibility/CardToCard.php:98
+msgid "View full image"
+msgstr "مشاهده تصویر کامل"
+
+#: inc/compatibility/CardToCard.php:176
+msgid "Failed to upload the receipt. Please try again."
+msgstr "بارگذاری رسید ناموفق بود. لطفاً دوباره تلاش کنید."
+
+#: inc/compatibility/CardToCard.php:177
+msgid "The receipt file size must not exceed the allowed limit."
+msgstr "حجم فایل رسید نباید از حد مجاز بیشتر باشد."
+
+#: inc/compatibility/CardToCard.php:178
+msgid "Invalid file format. Only JPG, PNG, and WebP are allowed."
+msgstr "فرمت فایل نامعتبر است. فقط JPG، PNG و WebP مجاز هستند."
+
+#: inc/compatibility/CardToCard.php:179
+msgid "A receipt has already been submitted for this order."
+msgstr "برای این سفارش قبلاً رسید ارسال شده است."
+
+#: inc/compatibility/CardToCard.php:180
+msgid "Your payment receipt has been submitted successfully."
+msgstr "رسید پرداخت شما با موفقیت ارسال شد."
+
+#: inc/compatibility/CardToCard.php:212
+msgid "Invalid order."
+msgstr "شناسه سفارش نامعتبر است."
+
+#: inc/compatibility/CardToCard.php:216
+msgid "Invalid request."
+msgstr "درخواست نامعتبر است."
+
+#: inc/compatibility/CardToCard.php:220
+msgid "You do not have permission to access this order."
+msgstr "شما حق دسترسی برای اجرای این عملیات ندارید."
+
+#. translators: %s: order number
+#: inc/compatibility/CardToCard.php:243
+#, php-format
+msgid "Card to Card Receipt for Order #%s"
+msgstr "رسید کارت به کارت برای سفارش #%s"
+
+#: inc/compatibility/CardToCard.php:281
+msgid "File size exceeds the allowed limit."
+msgstr "حجم فایل از حد مجاز بیشتر است."
+
+#: inc/compatibility/Test.php:29
+msgid "Security verification failed. Invalid or expired nonce."
+msgstr "خطای اعتبارسنجی امنیتی رخ داده است."
+
+#: inc/compatibility/Test.php:30
+msgid "Security Error"
+msgstr "خطای امنیتی"
+
+#: inc/compatibility/Test.php:39
+msgid "Order ID is Invalid."
+msgstr "شناسه سفارش نامعتبر می باشد."
+
+#: inc/compatibility/Test.php:43
+msgid "Order Status is not pending payment."
+msgstr "وضعیت سفارش در انتظار پرداخت نمی باشد."
+
+#: inc/compatibility/ZarinPlus.php:49
+msgid "Gateways is found:"
+msgstr "درگاه یافت شد:"
+
+#: inc/custom-table/pg-log/Log.php:82
+msgid "Unknown"
+msgstr "نامشخص"
+
+#: inc/custom-table/pg-log/LogAdminPage.php:214
+#: inc/custom-table/pg-log/LogListTable.php:259
+msgid "ID"
+msgstr "شناسه"
+
+#: inc/custom-table/pg-log/LogAdminPage.php:216
+#: inc/custom-table/pg-log/LogListTable.php:260
+msgid "Gateway"
+msgstr "درگاه"
+
+#: inc/custom-table/pg-log/LogAdminPage.php:221
+#: inc/custom-table/pg-log/LogListTable.php:263
+msgid "Type"
+msgstr "نوع"
+
+#: inc/custom-table/pg-log/LogAdminPage.php:225
+#: inc/custom-table/pg-log/LogListTable.php:261
+msgid "Status Code"
+msgstr "کد وضعیت"
+
+#: inc/custom-table/pg-log/LogListTable.php:252
+msgid "Empty gateways log list."
+msgstr "لیست لاگ درگاه خالی می باشد."
+
+#: inc/custom-table/pg-log/LogListTable.php:262
+msgid "Url"
+msgstr "آدرس"
+
+#: inc/custom-table/pg-log/LogListTable.php:264
+msgid "Request"
+msgstr "درخواست"
+
+#: inc/custom-table/pg-log/LogListTable.php:265
+msgid "Created at"
+msgstr "تاریخ ایجاد"
+
+#: inc/custom-table/pg-log/LogListTable.php:285
+msgid "Are you sure?"
+msgstr "آیا مطمئن هستید؟"
+
+#: inc/custom-table/pg-log/LogListTable.php:291
+#: inc/custom-table/pg-log/LogListTable.php:463
+msgid "Delete"
+msgstr "حذف"
+
+#: inc/custom-table/pg-log/LogListTable.php:328
+msgid "ago"
+msgstr "پیش"
+
+#: inc/custom-table/pg-log/LogListTable.php:348
+msgid "Send: "
+msgstr "ارسال: "
+
+#: inc/custom-table/pg-log/LogListTable.php:358
+#: inc/custom-table/pg-log/LogListTable.php:383
+#: inc/custom-table/pg-log/LogListTable.php:410
+msgid "Close"
+msgstr "بستن"
+
+#: inc/custom-table/pg-log/LogListTable.php:371
+#: inc/custom-table/pg-log/LogListTable.php:396
+#: inc/custom-table/pg-log/LogListTable.php:422
+msgid "Show"
+msgstr "نمایش"
+
+#: inc/custom-table/pg-log/LogListTable.php:377
+msgid "Header: "
+msgstr "هدر: "
+
+#: inc/custom-table/pg-log/LogListTable.php:400
+msgid "Response: "
+msgstr "خروجی: "
+
+#: inc/custom-table/pg-log/LogListTable.php:448
+msgid "All"
+msgstr "همه"
+
+#: inc/custom-table/pg-log/LogListTable.php:505
+msgid "You are not Permission for this action."
+msgstr "شما حق دسترسی برای اجرای این عملیات ندارید."
+
+#: inc/custom-table/pg-log/LogListTable.php:512
+msgid "Items deleted."
+msgstr "آیتم ها حذف شده اند."
+
+#. translators: %d: Number of items to delete
+#: inc/custom-table/pg-log/LogListTable.php:538
+#, php-format
+msgid "Delete %d Id Items"
+msgstr "آیتم با شناسه %d حذف شد"
+
+#: inc/custom-table/pg-log/views/list-table.php:26
+msgid "Search"
+msgstr "جستجو"
+
+#: inc/gateways/AqayePardakht.php:80 inc/gateways/AqayePardakht.php:166
+#: inc/gateways/AsanPardakht.php:360 inc/gateways/Azkivam.php:78
+#: inc/gateways/Azkivam.php:162 inc/gateways/IranKish.php:269
+#: inc/gateways/Mellat.php:294 inc/gateways/ParsPal.php:103
+#: inc/gateways/ParsPal.php:214 inc/gateways/Parsian.php:151
+#: inc/gateways/Pasargad.php:168 inc/gateways/Pasargad.php:238
+#: inc/gateways/Pasargad.php:333 inc/gateways/PayPing.php:89
+#: inc/gateways/PayPing.php:179 inc/gateways/Saderat.php:191
+#: inc/gateways/Saderat.php:207 inc/gateways/Sep.php:87
+#: inc/gateways/Sep.php:172 inc/gateways/SnappPay.php:159
+#: inc/gateways/SnappPay.php:241 inc/gateways/SnappPay.php:320
+#: inc/gateways/Tara.php:171 inc/gateways/Tara.php:259
+#: inc/gateways/Zibal.php:80 inc/gateways/Zibal.php:170
+msgid "Error Code: "
+msgstr "کد خطا: "
+
+#: inc/gateways/DigiPay.php:84 inc/gateways/Jibit.php:70
+#: inc/gateways/ParsPal.php:73 inc/gateways/ParsPal.php:183
+#: inc/gateways/Pasargad.php:77 inc/gateways/SnappPay.php:73
+#: inc/gateways/Tara.php:72
+msgid "Invalid gateway settings input."
+msgstr "تنظیمات ورودی درگاه اشتباه می باشد."
+
+#: inc/gateways/ParsPal.php:101 inc/gateways/ParsPal.php:212
+#: inc/gateways/ParsPal.php:233 inc/templates/test-gateway.php:15
+msgid "Failed Payment"
+msgstr "پرداخت ناموفق"
+
+#: inc/gateways/ParsPal.php:232
+msgid "User cancelled the payment."
+msgstr "کاربر پرداخت را لغو کرد."
+
+#: inc/gateways/ParsPal.php:234
+msgid "Payment cancelled by user."
+msgstr "پیام در زمان لغو پرداخت توسط کاربر"
+
+#: inc/gateways/ParsPal.php:237
+msgid ""
+"Unknown error occurred. If the amount was deducted, it will be refunded "
+"within 72 hours."
+msgstr ""
+"خطای ناشناخته‌ای رخ داد. اگر مبلغ کسر شده باشد، طی ۷۲ ساعت بازگردانده می‌شود."
+
+#: inc/templates/cardtocard-gateway.php:6
+msgid "Card to Card Payment Information"
+msgstr "اطلاعات پرداخت کارت به کارت"
+
+#: inc/templates/cardtocard-gateway.php:69
+msgid "Payment Receipt Image"
+msgstr "تصویر رسید پرداخت"
+
+#. translators: %s: maximum file size in megabytes
+#: inc/templates/cardtocard-gateway.php:83
+#, php-format
+msgid "Maximum file size: %s MB. Allowed formats: JPG, PNG, and WebP."
+msgstr "حداکثر حجم فایل: %s مگابایت. فرمت‌های مجاز: JPG، PNG و WebP."
+
+#: inc/templates/cardtocard-gateway.php:96
+msgid "Submit Payment Receipt"
+msgstr "ارسال رسید پرداخت"
+
+#: inc/templates/test-gateway.php:9
+msgid "Please click the buttons below to perform the operation"
+msgstr "لطفا دکمه زیر را کلیک کنید تا عملیات اجرا شوند"
+
+#: inc/templates/test-gateway.php:12
+msgid "Successful Payment"
+msgstr "پرداخت موفق"
+
+#. Description of the plugin/theme
+msgid "Persian Gateways for WooCommerce/WordPress"
+msgstr "درگاه پرداخت فارسی برای وردپرس/ووکامرس"
+
+#. Author of the plugin/theme
+msgid "Parsidate Teams"
+msgstr "تیم پارسی دیت"
+
+#. Author URI of the plugin/theme
+msgid "https://wp-parsi.com"
+msgstr ""
+
+#~ msgid "WP-Parsidate"
+#~ msgstr "پارسی دیت"
+
+#~ msgid ""
+#~ "For proper functionality of your plugin, the %1$s plugin is required. "
+#~ "Please %2$s or %3$s."
+#~ msgstr "برای اجرای صحیح این افزونه , %1$s نیازمند هست. لطفا %2$s یا %3$s."
+
+#~ msgid "%s ParsiGate"
+#~ msgstr "%s پارسی گیت"
+
+#~ msgid "Always display"
+#~ msgstr "همیشه نمایش بده"
+
+#: inc/Gateways.php
+msgid "Vandar"
+msgstr "وندار"
+
+#: inc/Gateways.php
+msgid "Enter the Vandar IPG API key."
+msgstr "کلید API درگاه وندار (IPG) را وارد کنید."
+
+#: inc/Gateways.php
+msgid "Invalid Vandar callback token."
+msgstr "توکن بازگشتی وندار نامعتبر است."
+
+#: inc/Gateways.php
+msgid "Invalid Jibit callback."
+msgstr "اطلاعات بازگشتی جیبیت نامعتبر است."
+
+#: inc/gateways/Vandar.php
+msgid "Invalid response from Vandar."
+msgstr "پاسخ نامعتبر از وندار دریافت شد."
+
+#: inc/gateways/Vandar.php
+msgid "Vandar payment request failed."
+msgstr "درخواست پرداخت وندار ناموفق بود."
+
+#: inc/gateways/Vandar.php
+msgid "Vandar payment was cancelled or failed."
+msgstr "پرداخت وندار لغو شد یا ناموفق بود."
+
+#: inc/gateways/Vandar.php
+msgid "Vandar payment amount is invalid."
+msgstr "مبلغ پرداخت وندار نامعتبر است."
+
+#: inc/gateways/Vandar.php
+msgid "Vandar verification failed."
+msgstr "تأیید پرداخت وندار ناموفق بود."

@@ -1,0 +1,61 @@
+<?php
+
+namespace ParsiGate\gateways;
+
+if (!defined('ABSPATH')) exit;
+
+class Test extends Base
+{
+
+    public static string $query = 'wc-parsigate-test-gateway';
+
+    public function pay(array $args = []): array
+    {
+        $nonce = wp_create_nonce('parsigate_test_gateway_' . $args['order_id']);
+
+        $redirect = add_query_arg([
+            static::$query => $args['order_id'],
+            'callback_url' => urlencode_deep($args['callback_url']),
+            'parsigate_nonce' => $nonce
+        ], get_site_url(null, "/"));
+
+        return $this->success(
+            [
+                'authority' => wp_generate_uuid4(),
+                'redirect' => $redirect
+            ],
+            [
+                'url' => '',
+                'body' => [],
+                'response' => [],
+                'header' => [],
+            ],
+            200
+        );
+    }
+
+    public function verify(array $args = []): array
+    {
+        // Get Params
+        $status = $args['status'];
+
+        // Check Status
+        if ($status == "NOK") {
+            return $this->error();
+        }
+
+        // Success
+        return $this->success(
+            [
+                'transaction_id' => wp_rand(1000000000, 9999999999),
+            ],
+            [
+                'url' => '',
+                'body' => [],
+                'response' => [],
+                'header' => [],
+            ],
+            200
+        );
+    }
+}

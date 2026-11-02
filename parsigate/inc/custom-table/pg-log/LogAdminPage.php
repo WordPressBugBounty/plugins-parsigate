@@ -1,0 +1,234 @@
+<?php
+
+namespace ParsiGate\CustomTable;
+
+use ParsiGate\Gateways;
+use WPParsidate\Addons\ParsiGateOption\ParsiGateOption;
+
+if (!defined('ABSPATH')) exit;
+
+class LogAdminPage extends Page
+{
+
+    public \WP_List_Table $admin_list_table;
+
+    public static int $ListTablePerPage = 50;
+
+    public function __construct()
+    {
+        // Add Menu
+        add_action('admin_menu', array($this, 'admin_menu'));
+
+        // Set Screen Option (Admin List Table)
+        add_filter('set-screen-option', array($this, 'set_screen_option'), 10, 3);
+
+        // Custom JS
+        add_action('admin_enqueue_scripts', array($this, 'admin_assets'));
+
+        // Search Box
+        add_filter('parsigate_admin_post_type_search_box_fields', [$this, 'search_box_field']);
+
+        // Handler
+        add_action("admin_init", array($this, 'handler'));
+
+        // Admin Notices
+        add_action('admin_notices', [$this, 'admin_notices'], 30);
+    }
+
+    /**
+     * @return Log|string
+     */
+    public static function model()
+    {
+        return Log::class;
+    }
+
+    public static function page_slug(): string
+    {
+        return (static::model())::slug();
+    }
+
+    public function admin_menu(): void
+    {
+        if (!ParsiGateOption::enable_log()) {
+            return;
+        }
+
+        $hook = add_management_page(
+            (static::model())::title(),
+            (static::model())::title(),
+            apply_filters('parsigate_log_menu_permission', 'manage_options'),
+            static::page_slug(),
+            [$this, 'page']
+        );
+
+        add_action("load-$hook", array($this, 'screen_option'));
+    }
+
+    public function admin_assets(): void
+    {
+        if (!static::is_page()) {
+            return;
+        }
+
+        // Add Thickbox
+        add_thickbox();
+
+        // phpcs:disable WordPress.Security.NonceVerification
+
+        // Setup Options Search Box Select
+        $search_input_id = 'pg_log-search-input';
+        $parsigate_search_fields = apply_filters('parsigate_admin_post_type_search_box_fields', []);
+
+        $options_html = '';
+        foreach ($parsigate_search_fields as $parsigate_name => $parsigate_value_array) {
+            $type = 'text';
+            if (isset($parsigate_value_array['type'])) {
+                $type = $parsigate_value_array['type'];
+            }
+            $parsigate_choices = [];
+            if ($type == "select") {
+                if (is_array($parsigate_value_array['choices']) && !empty($parsigate_value_array['choices'])) {
+                    $parsigate_choices = wp_json_encode($parsigate_value_array['choices'], JSON_NUMERIC_CHECK);
+                }
+            }
+            if (is_array($parsigate_value_array)) {
+                $title = $parsigate_value_array['title'];
+            } else {
+                $title = $parsigate_value_array;
+            }
+
+
+            $selected = '';
+            if (isset($_REQUEST['search-type'])) {
+                $selected = selected(sanitize_text_field(wp_unslash($_REQUEST['search-type'])), $parsigate_name, false);
+            }
+            $data_selected = !empty($parsigate_choices) ? ' data-selected=\'' . esc_attr($parsigate_choices) . '\' ' : '';
+            $options_html .= sprintf(
+                '<option %s data-type="%s" value="%s" %s>%s</option>',
+                $data_selected,
+                esc_attr($type),
+                esc_attr($parsigate_name),
+                $selected,
+                esc_html($title)
+            );
+        }
+        $current_search_value = '';
+        if (!empty($_GET['s'])) {
+            $current_search_value = esc_js(sanitize_text_field(wp_unslash($_GET['s'])));
+        }
+
+        // phpcs:enable WordPress.Security.NonceVerification
+
+        // Add Js and Css
+        wp_enqueue_style('parsigate-logs', \ParsiGate::$plugin_url . '/assets/admin/logs.min.css', array(), \ParsiGate::$plugin_version, 'all');
+        wp_enqueue_script('parsigate-logs', \ParsiGate::$plugin_url . '/assets/admin/logs.min.js', array('jquery'), \ParsiGate::$plugin_version, true);
+        wp_localize_script('parsigate-logs', 'parsigateAdminData', array(
+            'searchInputId' => $search_input_id,
+            'optionsHtml' => $options_html,
+            'currentSearchValue' => $current_search_value,
+        ));
+
+        // Add Json Browse
+        wp_enqueue_style('parsigate-json-browser', \ParsiGate::$plugin_url . '/assets/json-browse/json-browse.css', array(), \ParsiGate::$plugin_version, 'all');
+        wp_enqueue_script('parsigate-json-browser', \ParsiGate::$plugin_url . '/assets/json-browse/json-browse.js', array('jquery'), \ParsiGate::$plugin_version, false);
+    }
+
+    public static function set_screen_option($status, $option, $value)
+    {
+        // this filter run when saved
+        if ($option == 'wp_' . static::page_slug() . '_per_page') {
+            if ((int)$value < 1) {
+                $value = static::$ListTablePerPage;
+            }
+        }
+
+        return $value;
+    }
+
+    public static function screen_id(): string
+    {
+        return 'tools_page_' . static::page_slug();
+    }
+
+    public static function is_page(): bool
+    {
+        $screen = get_current_screen();
+        return ($screen->id == static::screen_id());
+    }
+
+    public static function url($args = []): string
+    {
+        return add_query_arg(array_replace([
+            'page' => static::page_slug()
+        ], $args), admin_url('tools.php'));
+    }
+
+    public function screen_option(): void
+    {
+        if (static::is_page()) {
+
+            // Set Screen Option
+            add_screen_option('per_page', array(
+                'label' => 'تعداد در هر صفحه',
+                'default' => 50,
+                'option' => 'wp_' . static::page_slug() . '_per_page' // user_meta_name
+            ));
+
+            // Load WP_List_Table
+            $this->admin_list_table = new LogListTable();
+            $this->admin_list_table->prepare_items();
+        }
+    }
+
+    public function handler(): void
+    {
+        // if (static::is_page()) {}
+    }
+
+    public function admin_notices(): void
+    {
+        if (static::is_page()) {
+
+            $flashMessage = Message::get();
+            if (!empty($flashMessage)) {
+                Message::admin_notice($flashMessage['data'], $flashMessage['type']);
+            }
+        }
+    }
+
+    public function page(): void
+    {
+
+        $table = $this->admin_list_table;
+        $title = (static::model())::title();
+        $buttons = [];
+        include \ParsiGate::$plugin_path . '/inc/custom-table/pg-log/views/list-table.php';
+    }
+
+    public function search_box_field($list)
+    {
+        if (static::is_page()) {
+
+            $list = [
+                'ID' => __('ID', 'parsigate'),
+                'gateway' => array(
+                    'title' => __('Gateway', 'parsigate'),
+                    'type' => 'select',
+                    'choices' => Gateways::choices()
+                ),
+                'type' => array(
+                    'title' => __('Type', 'parsigate'),
+                    'type' => 'select',
+                    'choices' => (static::model())::get_type_list()
+                ),
+                'code' => __('Status Code', 'parsigate')
+            ];
+        }
+
+        return $list;
+    }
+
+}
+
+new LogAdminPage();
